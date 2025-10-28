@@ -1,0 +1,154 @@
+# =============================
+# 🌍 Planet Zephyria Universe
+# =============================
+```{r}
+# code for solving task
+
+# --- 1. Atomic Types ---
+# Numeric variables
+gravity <- 9.8           # m/s^2
+temperature <- -75.4     # Celsius
+diameter <- 13450.2      # km
+atmosphere_density <- 0.9  # Relative to Earth
+```
+```{r}
+# code for solving task
+
+# Integer variables
+num_moons <- 3
+num_species <- 127
+crystal_mountains <- 21
+```
+```{r}
+# code for solving task
+# Logical variables
+has_water <- TRUE
+is_inhabited <- FALSE
+```
+
+```{r}
+# code for solving task
+# Character variables
+planet_name <- "Zephyria"
+galactic_region <- "Omega Quadrant"
+planet_type <- "Terra-like"
+```
+```{r}
+# code for solving task
+# Description
+cat("Planet", planet_name, "is a", planet_type, "located in the", galactic_region,
+    ". It has", num_moons, "moons and", num_species, "known species.",
+    "Water present:", has_water, "| Inhabited:", is_inhabited, "\n\n")
+```
+```{r}
+# code for solving task
+# --- 2. Vectors ---
+# Combine all numeric/integer values
+numeric_vector <- c(gravity, temperature, diameter, atmosphere_density,
+                    num_moons, num_species, crystal_mountains)
+
+# Sequence vector: 20 to 100 by 10
+sequence_vector <- seq(20, 100, by = 10)
+
+# Logical vector of 10 random TRUE/FALSE values
+set.seed(123)  # For reproducibility
+logical_vector <- sample(c(TRUE, FALSE), size = 10, replace = TRUE)
+
+# Display
+cat("Numeric vector:\n"); print(numeric_vector)
+cat("\nSequence vector:\n"); print(sequence_vector)
+cat("\nLogical vector:\n"); print(logical_vector)
+cat("\n\n")
+
+```
+```{r}
+# code for solving task
+# --- 3. Matrix ---
+# 3x3 matrix of random integers between -50 and 50
+planet_matrix <- matrix(sample(-50:50, 9, replace = TRUE), nrow = 3, ncol = 3,
+                        dimnames = list(
+                          c("Flora", "Fauna", "Terrain"),
+                          c("ZoneA", "ZoneB", "ZoneC")
+                        ))
+
+# Row and column means
+row_avg <- rowMeans(planet_matrix)
+col_avg <- colMeans(planet_matrix)
+
+# Display
+cat("Planet Matrix:\n")
+print(planet_matrix)
+cat("\nRow Means:\n"); print(row_avg)
+cat("\nColumn Means:\n"); print(col_avg)
+cat("\n\n")
+```
+```{r}
+# code for solving task
+# --- 4. List ---
+zephyria_universe <- list(
+  # Atomic types
+  gravity = gravity,
+  temperature = temperature,
+  diameter = diameter,
+  atmosphere_density = atmosphere_density,
+  num_moons = num_moons,
+  num_species = num_species,
+  crystal_mountains = crystal_mountains,
+  has_water = has_water,
+  is_inhabited = is_inhabited,
+  planet_name = planet_name,
+  galactic_region = galactic_region,
+  planet_type = planet_type,
+
+  # Vectors
+  numeric_vector = numeric_vector,
+  sequence_vector = sequence_vector,
+  logical_vector = logical_vector,
+
+  # Matrix
+  matrix = planet_matrix,
+
+  # Description
+  description = "Zephyria is a mysterious, frozen exoplanet with unique ecosystems and towering crystal mountains."
+)
+
+cat("Universe List Structure:\n")
+str(zephyria_universe)
+cat("\n\n")
+```
+```{r}
+# code for solving task
+# --- 5. Factor ---
+tech_levels <- factor(c("low", "medium", "high", "low", "medium", "high", "medium"),
+                      levels = c("low", "medium", "high"))
+
+cat("Technology Levels:\n")
+print(table(tech_levels))
+cat("\n\n")
+```
+```{r}
+# code for solving task
+# --- 6. Data Frame ---
+species_df <- data.frame(
+  species_name = c("Zarnok", "Veliri", "Quarn", "Tekk", "Morith", "Slytherix"),
+  avg_height_m = c(2.1, 1.3, 2.5, 1.9, 0.8, 2.8),
+  is_bipedal = c(TRUE, TRUE, FALSE, TRUE, FALSE, FALSE),
+  tech_level = factor(c("medium", "high", "low", "high", "low", "medium"),
+                      levels = c("low", "medium", "high"))
+)
+
+# Rename columns
+colnames(species_df) <- c("Name", "Height_m", "Bipedal", "Tech_Level")
+
+# Add derived column
+species_df$Is_Tall <- species_df$Height_m > 2
+
+# Display structure and summary
+cat("Species Data Frame Structure:\n")
+str(species_df)
+cat("\nSummary:\n")
+print(summary(species_df))
+cat("\nFinal Data Frame:\n")
+print(species_df)
+```
+
