@@ -1,0 +1,536 @@
+# Planet Zephyria Universe
+
+```{r}
+# code for solving task
+
+# --- 1. Atomic Types ---
+# Numeric variables
+gravity <- 9.8           # m/s^2
+temperature <- -75.4     # Celsius
+diameter <- 13450.2      # km
+atmosphere_density <- 0.9  # Relative to Earth
+```
+```{r}
+# code for solving task
+
+# Integer variables
+num_moons <- 3
+num_species <- 127
+crystal_mountains <- 21
+```
+```{r}
+# code for solving task
+# Logical variables
+has_water <- TRUE
+is_inhabited <- FALSE
+```
+
+```{r}
+# code for solving task
+# Character variables
+planet_name <- "Zephyria"
+galactic_region <- "Omega Quadrant"
+planet_type <- "Terra-like"
+```
+```{r}
+# code for solving task
+# Description
+cat("Planet", planet_name, "is a", planet_type, "located in the", galactic_region,
+    ". It has", num_moons, "moons and", num_species, "known species.",
+    "Water present:", has_water, "| Inhabited:", is_inhabited, "\n\n")
+```
+```{r}
+# code for solving task
+# --- 2. Vectors ---
+# Combine all numeric/integer values
+numeric_vector <- c(gravity, temperature, diameter, atmosphere_density,
+                    num_moons, num_species, crystal_mountains)
+
+# Sequence vector: 20 to 100 by 10
+sequence_vector <- seq(20, 100, by = 10)
+
+# Logical vector of 10 random TRUE/FALSE values
+set.seed(123)  # For reproducibility
+logical_vector <- sample(c(TRUE, FALSE), size = 10, replace = TRUE)
+
+# Display
+cat("Numeric vector:\n"); print(numeric_vector)
+cat("\nSequence vector:\n"); print(sequence_vector)
+cat("\nLogical vector:\n"); print(logical_vector)
+cat("\n\n")
+
+```
+```{r}
+# code for solving task
+# --- 3. Matrix ---
+# 3x3 matrix of random integers between -50 and 50
+planet_matrix <- matrix(sample(-50:50, 9, replace = TRUE), nrow = 3, ncol = 3,
+                        dimnames = list(
+                          c("Flora", "Fauna", "Terrain"),
+                          c("ZoneA", "ZoneB", "ZoneC")
+                        ))
+
+# Row and column means
+row_avg <- rowMeans(planet_matrix)
+col_avg <- colMeans(planet_matrix)
+
+# Display
+cat("Planet Matrix:\n")
+print(planet_matrix)
+cat("\nRow Means:\n"); print(row_avg)
+cat("\nColumn Means:\n"); print(col_avg)
+cat("\n\n")
+```
+```{r}
+# code for solving task
+# --- 4. List ---
+zephyria_universe <- list(
+  # Atomic types
+  gravity = gravity,
+  temperature = temperature,
+  diameter = diameter,
+  atmosphere_density = atmosphere_density,
+  num_moons = num_moons,
+  num_species = num_species,
+  crystal_mountains = crystal_mountains,
+  has_water = has_water,
+  is_inhabited = is_inhabited,
+  planet_name = planet_name,
+  galactic_region = galactic_region,
+  planet_type = planet_type,
+
+  # Vectors
+  numeric_vector = numeric_vector,
+  sequence_vector = sequence_vector,
+  logical_vector = logical_vector,
+
+  # Matrix
+  matrix = planet_matrix,
+
+  # Description
+  description = "Zephyria is a mysterious, frozen exoplanet with unique ecosystems and towering crystal mountains."
+)
+
+cat("Universe List Structure:\n")
+str(zephyria_universe)
+cat("\n\n")
+```
+```{r}
+# code for solving task
+# --- 5. Factor ---
+tech_levels <- factor(c("low", "medium", "high", "low", "medium", "high", "medium"),
+                      levels = c("low", "medium", "high"))
+
+cat("Technology Levels:\n")
+print(table(tech_levels))
+cat("\n\n")
+```
+```{r}
+# code for solving task
+# --- 6. Data Frame ---
+species_df <- data.frame(
+  species_name = c("Zarnok", "Veliri", "Quarn", "Tekk", "Morith", "Slytherix"),
+  avg_height_m = c(2.1, 1.3, 2.5, 1.9, 0.8, 2.8),
+  is_bipedal = c(TRUE, TRUE, FALSE, TRUE, FALSE, FALSE),
+  tech_level = factor(c("medium", "high", "low", "high", "low", "medium"),
+                      levels = c("low", "medium", "high"))
+)
+
+# Rename columns
+colnames(species_df) <- c("Name", "Height_m", "Bipedal", "Tech_Level")
+
+# Add derived column
+species_df$Is_Tall <- species_df$Height_m > 2
+
+# Display structure and summary
+cat("Species Data Frame Structure:\n")
+str(species_df)
+cat("\nSummary:\n")
+print(summary(species_df))
+cat("\nFinal Data Frame:\n")
+print(species_df)
+```
+
+
+# Task 2: Subsetting & Missing Data
+
+
+```{r}
+# --- 2.1 Querying Vectors ---
+
+## 2.1.1 From your Sequence vector
+cat("3rd element of sequence_vector:\n")
+print(sequence_vector[3])
+
+cat("\nElements 2 through 5 of sequence_vector:\n")
+print(sequence_vector[2:5])
+
+cat("\nAll values > 50 in sequence_vector:\n")
+print(sequence_vector[sequence_vector > 50])
+
+
+## 2.1.2 From your Logical vector
+cat("\nOnly TRUE values from logical_vector:\n")
+print(logical_vector[logical_vector])
+
+cat("\nIndices of TRUE values (using which):\n")
+print(which(logical_vector))
+```
+```{r}
+# --- 2.2 Querying Your “Universe” List ---
+
+cat("\nDescription (using $ operator):\n")
+print(zephyria_universe$description)
+
+cat("\n3x3 Matrix (using [[ ]]):\n")
+print(zephyria_universe[[ "matrix" ]])
+
+cat("\nSecond element from the vector inside the list (sequence_vector[2]):\n")
+print(zephyria_universe$sequence_vector[2])
+```
+```{r}
+# --- 2.3 Investigating Your Data Frame ---
+
+# Create a small Zephyria data frame
+zephyria_df <- data.frame(
+  region = c("North", "South", "East", "West", "Central"),
+  population = c(500, 1200, 800, 150, 2300),
+  avg_temp = c(-70, -60, -80, -75, -65),
+  is_habitable = c(FALSE, TRUE, FALSE, FALSE, TRUE)
+)
+
+cat("\nFirst 3 rows of zephyria_df:\n")
+print(head(zephyria_df, 3))
+
+cat("\nValue from 4th row, 1st column:\n")
+print(zephyria_df[4, 1])
+
+cat("\nLogical column (is_habitable):\n")
+print(zephyria_df$is_habitable)
+
+# Logical subsetting
+cat("\nSubset: rows with population > 1000\n")
+df_subset <- zephyria_df[zephyria_df$population > 1000, ]
+print(df_subset)
+
+# Subsetting by category
+cat("\nSubset: rows from North and West regions\n")
+df_subset_2 <- zephyria_df[zephyria_df$region %in% c("North", "West"), ]
+print(df_subset_2)
+```
+```{r}
+# --- 2.4 Handling “Corrupted” Data (NA) ---
+
+# Create a copy
+df_corrupted <- zephyria_df
+
+# Introduce 3 NAs
+df_corrupted[2, 2] <- NA
+df_corrupted[4, 3] <- NA
+df_corrupted[5, 4] <- NA
+
+cat("\nCorrupted data frame:\n")
+print(df_corrupted)
+
+# Count total missing values
+cat("\nTotal missing values:\n")
+print(sum(is.na(df_corrupted)))
+
+# Count missing values per column
+cat("\nMissing values per column:\n")
+print(colSums(is.na(df_corrupted)))
+
+# Mean of numeric column with NA
+cat("\nMean of 'population' (ignoring NA):\n")
+print(mean(df_corrupted$population, na.rm = TRUE))
+
+# Remove rows with NAs
+cat("\nClean data frame (rows without NA):\n")
+df_clean <- na.omit(df_corrupted)
+print(df_clean)
+```
+```{r}
+# --- 2.5 Bonus Challenge: which() ---
+
+cat("\nRow with highest population:\n")
+highest_pop_index <- which.max(zephyria_df$population)
+print(zephyria_df[highest_pop_index, ])
+
+cat("\nRow with lowest population:\n")
+lowest_pop_index <- which.min(zephyria_df$population)
+print(zephyria_df[lowest_pop_index, ])
+```
+```{r}
+#  Task 3: Real-World Dataset: Penguins
+
+
+# 3.1 The Quest: Find Your Data
+# Data from: https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv
+
+# Make sure the file "penguins.csv" is in your project directory.
+
+
+# 3.2 The Import: Load Your Data
+library(dplyr)
+library(readr)
+
+penguins <- read_csv("penguins.csv")
+
+# First Inspection
+cat("\n--- Penguin Dataset Structure ---\n")
+glimpse(penguins)
+
+cat("\n--- First Rows ---\n")
+head(penguins)
+
+cat("\n--- Statistical Summary ---\n")
+summary(penguins)
+
+
+
+#        Task 3.3 — dplyr Exploration
+
+
+# 5 questions using all required dplyr verbs:
+# select(), filter(), arrange(), mutate(), group_by(), summarise()
+
+
+# Question 1:
+# Which penguin species has the largest average body mass?
+
+
+cat("\n\nQ1: Largest Average Body Mass by Species:\n")
+penguins %>%
+  group_by(species) %>%
+  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE)) %>%
+  arrange(desc(avg_mass)) %>%
+  print()
+
+
+
+# Question 2:
+# Select only species, island, and bill length columns.
+
+
+cat("\n\nQ2: Selected Columns (species, island, bill_length_mm):\n")
+penguins %>%
+  select(species, island, bill_length_mm) %>%
+  head() %>%
+  print()
+
+
+
+# Question 3:
+# Which penguins have a bill length greater than 50 mm?
+
+
+cat("\n\nQ3: Penguins With Bill Length > 50 mm:\n")
+penguins %>%
+  filter(bill_length_mm > 50) %>%
+  select(species, island, bill_length_mm) %>%
+  arrange(desc(bill_length_mm)) %>%
+  print()
+
+
+
+# Question 4:
+# Create a new column: body_mass_kg (grams → kilograms).
+
+
+cat("\n\nQ4: Add body_mass_kg Column:\n")
+penguins %>%
+  mutate(body_mass_kg = body_mass_g / 1000) %>%
+  select(species, body_mass_g, body_mass_kg) %>%
+  head() %>%
+  print()
+
+
+
+# Question 5:
+# How many penguins are recorded per island?
+
+
+cat("\n\nQ5: Penguin Counts per Island:\n")
+penguins %>%
+  group_by(island) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count)) %>%
+  print()
+```
+```{r}
+
+
+# TASK 4: FUNCTION TOOLKIT
+# Dataset: penguins (CSV from GitHub)
+
+
+# --- Load libraries ---
+library(readr)
+library(dplyr)
+
+
+
+
+# 4.1 GREETING FUNCTION
+
+
+welcome_to_my_universe <- function( universe_name, your_name) {
+  cat("-----------------------------------------\n")
+  cat(" Welcome to the Analysis Toolkit for:", universe_name, "\n")
+  cat(" Report prepared by:", your_name, "\n")
+  cat("-----------------------------------------\n")
+}
+
+# Call the greeting function
+welcome_to_my_universe("Penguin Research Universe", "Your Name")
+
+
+
+
+# 4.2 LOADING + INSPECTION FUNCTION
+
+
+load_and_inspect <- function(file_path) {
+  
+  data <- read_csv(file_path, show_col_types = FALSE)
+  
+  cat("\n--- Data Loaded Successfully ---\n")
+  cat("File:", file_path, "\n\n")
+  
+  cat("--- Structure (glimpse): ---\n")
+  print(glimpse(data))
+  
+  cat("\n--- First 6 Rows ---\n")
+  print(head(data))
+  
+  return(data)
+}
+
+# Load dataset from URL
+penguin_url <- "https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv"
+my_data <- load_and_inspect(penguin_url)
+
+
+
+
+# 4.3 QUERY FUNCTION
+# Example: filter penguins heavier than X grams
+
+
+filter_penguins_by_weight <- function(data, weight_threshold) {
+  
+  result <- data |>
+    filter(body_mass_g > weight_threshold) |>
+    select(species, island, body_mass_g)
+  
+  return(result)
+}
+
+# Call the query function
+heavy_penguins <- filter_penguins_by_weight(my_data, 4500)
+print(heavy_penguins)
+
+
+
+
+# 4.4 REPORTING FUNCTION
+# Summary report for one species
+
+
+generate_report <- function(data, species_name) {
+  
+  # Filter for selected species
+  species_data <- data |>
+    filter(species == species_name)
+  
+  # Summary statistics
+  avg_mass <- mean(species_data$body_mass_g, na.rm = TRUE)
+  avg_bill_length <- mean(species_data$bill_length_mm, na.rm = TRUE)
+  min_flipper <- min(species_data$flipper_length_mm, na.rm = TRUE)
+  max_flipper <- max(species_data$flipper_length_mm, na.rm = TRUE)
+  record_count <- nrow(species_data)
+  
+  # Print formatted report
+  cat("\n--------------------------------------\n")
+  cat(" Penguin Report for:", species_name, "\n")
+  cat("--------------------------------------\n")
+  cat(" Records found:", record_count, "\n")
+  cat(" Average body mass:", round(avg_mass, 1), "g\n")
+  cat(" Average bill length:", round(avg_bill_length, 1), "mm\n")
+  cat(" Minimum flipper length:", min_flipper, "mm\n")
+  cat(" Maximum flipper length:", max_flipper, "mm\n")
+  cat("--------------------------------------\n\n")
+}
+
+# Call reporting function for two species
+generate_report(my_data, "Adelie")
+generate_report(my_data, "Gentoo")
+
+
+```
+
+```{r}
+# -------------------------------
+# TASK 5: Visualising Your Universe
+# Using penguins dataset
+# -------------------------------
+
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+# Load dataset (assuming penguins CSV is available locally)
+penguins <- read_csv("penguins.csv", show_col_types = FALSE)
+
+# 5.1 Base R Histogram — Distribution of Body Mass
+hist(
+  penguins$body_mass_g,
+  main = "Distribution of Penguin Body Mass",
+  xlab = "Body Mass (g)",
+  col = "lightblue",
+  border = "white"
+)
+
+# 5.2 Scatter Plot — Bill Length vs Flipper Length
+scatter_plot <- ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm)) +
+  geom_point(alpha = 0.7, size = 3, colour = "darkblue") +
+  geom_smooth(colour = "gray20") +
+  labs(
+    title = "Relationship Between Bill Length and Flipper Length",
+    x = "Bill Length (mm)",
+    y = "Flipper Length (mm)"
+  ) +
+  theme_minimal()
+
+print(scatter_plot)
+
+# 5.3 Boxplot — Body Mass by Species
+box_plot <- ggplot(data = penguins, aes(x = species, y = body_mass_g, fill = species)) +
+  geom_boxplot() +
+  labs(
+    title = "Comparison of Penguin Body Mass by Species",
+    x = "Species",
+    y = "Body Mass (g)"
+  ) +
+  theme_light() +
+  theme(legend.position = "none")
+
+print(box_plot)
+
+# 5.4 Faceted Histogram — Flipper Length per Island
+facet_plot <- ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(bins = 20, fill = "coral", color = "black") +
+  facet_wrap(~ island) +
+  labs(
+    title = "Distribution of Flipper Length Across Islands",
+    x = "Flipper Length (mm)",
+    y = "Count"
+  )
+
+print(facet_plot)
+
+# 5.5 Save Favourite Plot
+# Saving the scatter plot as an example
+ggsave("my_universe_plot.png", scatter_plot, width = 8, height = 6)
+```
